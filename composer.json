@@ -1,0 +1,10 @@
+{
+    "require": {
+        "illuminate/support": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "byungi\\Session\\": "src/"
+        }
+    }
+}
