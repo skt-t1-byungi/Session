@@ -101,12 +101,12 @@ class Session
 
     public function getHandler()
     {
-        if ($this->handler) {
-            return $this->handler;
+        if (!$this->handler) {
+            $handlerClass = static::$baseHandler;
+            $this->setHandler(new $handlerClass);
         }
 
-        $handlerClass = static::$baseHandler;
-        return $handlerClass;
+        return $this->handler;
     }
 
     public function setOptions(array $options)
