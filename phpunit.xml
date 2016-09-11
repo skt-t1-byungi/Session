@@ -3,7 +3,7 @@
     colors="true"
 >
   <testsuites>
-    <testsuite name="partner.innorix">
+    <testsuite name="session test">
       <directory>tests</directory>
     </testsuite>
   </testsuites>
