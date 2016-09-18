@@ -123,7 +123,7 @@ class Manager
      */
     public function name($name = null)
     {
-        if (!$name) {
+        if (is_null($name)) {
             return session_name();
         }
 
@@ -137,7 +137,7 @@ class Manager
      */
     public function id($id = null)
     {
-        if (!id) {
+        if (is_null($id)) {
             return session_id();
         }
 

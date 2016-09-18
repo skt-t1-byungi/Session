@@ -9,11 +9,14 @@ use SessionHandlerInterface;
 
 class File implements SessionHandlerInterface
 {
-    private $savePath, $data;
+    private $savePath;
+
+    private $data;
 
     public function open($savePath, $sessionName)
     {
         $this->savePath = $savePath;
+
         if (!is_dir($this->savePath)) {
             mkdir($this->savePath, 0777);
         }
@@ -30,6 +33,7 @@ class File implements SessionHandlerInterface
     {
         $this->data = false;
         $filename = $this->savePath . '/sess_' . $id;
+
         if (file_exists($filename)) {
             $this->data = @file_get_contents($filename);
         }
@@ -55,6 +59,7 @@ class File implements SessionHandlerInterface
     public function destroy($id)
     {
         $filename = $this->savePath . '/sess_' . $id;
+
         if (file_exists($filename)) {
             @unlink($filename);
         }
@@ -65,6 +70,7 @@ class File implements SessionHandlerInterface
     public function gc($maxlifetime)
     {
         foreach (glob($this->savePath . '/sess_*') as $filename) {
+
             if (filemtime($filename) + $maxlifetime < time() && file_exists($filename)) {
                 @unlink($filename);
             }
