@@ -1,6 +1,7 @@
 {
     "require": {
-        "illuminate/support": "^5.3"
+        "illuminate/support": "^5.3",
+        "psr/http-message": "^1.0"
     },
     "autoload": {
         "psr-4": {
