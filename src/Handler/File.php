@@ -13,12 +13,27 @@ class File implements SessionHandlerInterface
 
     private $data;
 
+    public function __construct($savePath = null)
+    {
+        if (!$savePath) {
+            $savePath = session_save_path();
+        }
+
+        if (!$savePath) {
+            $savePath = sys_get_temp_dir() . '/sess/';
+        }
+
+        $this->$savePath = $savePath;
+    }
+
     public function open($savePath, $sessionName)
     {
-        $this->savePath = $savePath;
+        if ($savePath) {
+            $this->savePath = $savePath;
+        }
 
         if (!is_dir($this->savePath)) {
-            mkdir($this->savePath, 0777, true);
+            mkdir($this->savePath, 0755, true);
         }
 
         return true;

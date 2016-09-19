@@ -8,7 +8,7 @@ use SktT1Byungi\Session\Middleware;
 
 class Manager
 {
-    const DEFAULT_SETTINGS = [
+    private $DEFAULT_SETTINGS = [
         'cookie_secure' => false,
         'cookie_httponly' => true,
         'use_only_cookies' => true,
@@ -99,7 +99,7 @@ class Manager
 
     private function initSettings()
     {
-        $settings = array_merge(static::DEFAULT_SETTINGS, $this->settings);
+        $settings = array_merge($this->DEFAULT_SETTINGS, $this->settings);
 
         foreach ($settings as $key => $value) {
             ini_set(sprintf("session.%s", $key), $value);
