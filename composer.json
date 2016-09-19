@@ -1,5 +1,13 @@
 {
+    "name": "SktT1Byungi/Session",
+    "description": "Session Manager",
+    "keywords": [
+        "session",
+        "non blocking",
+    ],
+    "license": "MIT",
     "require": {
+        "php":">=5.6",
         "illuminate/support": "^5.3",
         "psr/http-message": "^1.0"
     },
