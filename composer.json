@@ -3,7 +3,7 @@
     "description": "Session Manager",
     "keywords": [
         "session",
-        "non blocking",
+        "non blocking"
     ],
     "license": "MIT",
     "require": {
