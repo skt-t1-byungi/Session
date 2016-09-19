@@ -17,7 +17,7 @@ class Manager
     /**
      * @var self
      */
-    private $instance;
+    private static $instance;
 
     /**
      * @var SessionHandlerInterface
@@ -29,13 +29,17 @@ class Manager
      */
     private $settings = [];
 
-    public static function __callStatic($method, $params)
+    private function __construct()
+    {
+    }
+
+    public static function getInstance()
     {
         if (is_null(static::$instance)) {
             static::$instance = new static;
         }
 
-        call_user_func_array([static::$instance, $method], $params);
+        return static::$instance;
     }
 
     /**
@@ -65,9 +69,22 @@ class Manager
      */
     public function close()
     {
-        if ($this->isStarted()) {
-            session_close();
+        session_write_close();
+        return $this;
+    }
+
+    /**
+     * @return self
+     */
+    public function destroy()
+    {
+        if (!$this->isStarted()) {
+            session_start();
         }
+
+        $_SESSION = [];
+
+        session_destroy();
 
         return $this;
     }
@@ -82,7 +99,7 @@ class Manager
 
     private function initSettings()
     {
-        $settings = array_merge(DEFAULT_SETTINGS, $this->settings);
+        $settings = array_merge(static::DEFAULT_SETTINGS, $this->settings);
 
         foreach ($settings as $key => $value) {
             ini_set(sprintf("session.%s", $key), $value);
