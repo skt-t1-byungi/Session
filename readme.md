@@ -2,6 +2,11 @@ SktT1Byungi/Session
 ==============================
 PHP Session manager (with non blocking handler)
 
+[![Latest Stable Version](https://poser.pugx.org/skt-t1-byungi/session/v/stable)](https://packagist.org/packages/skt-t1-byungi/session)
+[![Total Downloads](https://poser.pugx.org/skt-t1-byungi/session/downloads)](https://packagist.org/packages/skt-t1-byungi/session)
+[![Latest Unstable Version](https://poser.pugx.org/skt-t1-byungi/session/v/unstable)](https://packagist.org/packages/skt-t1-byungi/session)
+[![License](https://poser.pugx.org/skt-t1-byungi/session/license)](https://packagist.org/packages/skt-t1-byungi/session)
+
 Require
 ---
 PHP 5.6 <= *
