@@ -8,7 +8,7 @@ use SktT1Byungi\Session\Middleware;
 
 class Manager
 {
-    private $DEFAULT_SETTINGS = [
+    private static $DEFAULT_SETTINGS = [
         'cookie_secure' => false,
         'cookie_httponly' => true,
         'use_only_cookies' => true,
@@ -38,7 +38,6 @@ class Manager
         if (is_null(static::$instance)) {
             static::$instance = new static;
         }
-
         return static::$instance;
     }
 
@@ -58,7 +57,6 @@ class Manager
 
         $this->initSettings();
         $this->initHandler();
-
         session_start();
 
         return $this;
@@ -81,11 +79,8 @@ class Manager
         if (!$this->isStarted()) {
             session_start();
         }
-
         $_SESSION = [];
-
         session_destroy();
-
         return $this;
     }
 
@@ -99,7 +94,7 @@ class Manager
 
     private function initSettings()
     {
-        $settings = array_merge($this->DEFAULT_SETTINGS, $this->settings);
+        $settings = array_merge(static::$DEFAULT_SETTINGS, $this->settings);
 
         foreach ($settings as $key => $value) {
             ini_set(sprintf("session.%s", $key), $value);
@@ -111,7 +106,6 @@ class Manager
         if (!$this->handler) {
             $this->handler = new FileHandler;
         }
-
         session_set_save_handler($this->handler, true);
     }
 
@@ -143,7 +137,6 @@ class Manager
         if (is_null($name)) {
             return session_name();
         }
-
         session_name($name);
         return $this;
     }
@@ -157,7 +150,6 @@ class Manager
         if (is_null($id)) {
             return session_id();
         }
-
         session_id($id);
         return $this;
     }
@@ -171,7 +163,6 @@ class Manager
         if ($handler) {
             $this->handler($handler);
         }
-
         return new Middleware;
     }
 
