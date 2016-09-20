@@ -21,7 +21,6 @@ class Session
         }
 
         if ($method === 'collect') {
-
             if (empty($params[0])) {
                 throw new InvalidArgumentException('required 1 argument.');
             }
@@ -34,7 +33,6 @@ class Session
         }
 
         if ($method === 'remove') {
-
             if (empty($params[0])) {
                 throw new InvalidArgumentException('required 1 argument.');
             }
