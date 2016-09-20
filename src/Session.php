@@ -33,6 +33,15 @@ class Session
             return call_user_func_array([Arr::class, $method], array_merge([ & $_SESSION], $params));
         }
 
+        if ($method === 'remove') {
+
+            if (empty($params[0])) {
+                throw new InvalidArgumentException('required 1 argument.');
+            }
+
+            return static::forget($params[0]);
+        }
+
         throw new BadMethodCallException("not exists {$method} method");
     }
 
