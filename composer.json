@@ -1,10 +1,11 @@
 {
-    "name": "SktT1Byungi/Session",
+    "name": "skt-t1-byungi/session",
     "description": "Session Manager",
     "keywords": [
         "session",
         "non blocking"
     ],
+    "homepage" : "https://github.com/skt-t1-byungi/Session",
     "license": "MIT",
     "require": {
         "php":">=5.6",
