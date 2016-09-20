@@ -5,7 +5,6 @@
  */
 namespace SktT1Byungi\Session\Handler;
 
-use Exception;
 use SessionHandlerInterface;
 
 class File implements SessionHandlerInterface
@@ -22,21 +21,17 @@ class File implements SessionHandlerInterface
             session_save_path($savePath);
         }
 
-        if (!is_writable($savePath)) {
-            new Exception("cannot writable path : {$savePath}");
-        }
-    }
-
-    public function open($savePath, $sessionName)
-    {
-        if ($savePath) {
-            $this->savePath = $savePath;
-        }
+        $this->savePath = $savePath;
 
         if (!is_dir($this->savePath)) {
             mkdir($this->savePath, 0755, true);
         }
 
+        var_dump($this->savePath);
+    }
+
+    public function open($savePath, $sessionName)
+    {
         return true;
     }
 
