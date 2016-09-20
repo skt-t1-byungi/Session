@@ -9,22 +9,26 @@ class SessionTest extends PHPUnit_Framework_TestCase
         Session::manager()->destroy();
     }
 
+    public function sessionStart()
+    {
+        Session::manager()->handler(new FileHandler("./.session/"))->start();
+    }
+
     public function testStart()
     {
-        Session::manager()->start();
+        $this->sessionStart();
         $this->assertEquals(session_status(), PHP_SESSION_ACTIVE);
         $this->assertTrue(Session::manager()->isStarted());
     }
 
     public function testFileHandler()
     {
-        $fileHandler = new FileHandler;
+        $this->sessionStart();
 
-        Session::manager()->handler(new FileHandler)->start();
         Session::set('test', 1);
         Session::manager()->close();
 
-        $path = session_save_path() . '/sess_' . Session::manager()->id();
+        $path = './.session/sess_' . Session::manager()->id();
 
         $this->assertTrue(is_file($path));
 
@@ -47,7 +51,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     public function testSetter()
     {
-        Session::manager()->start();
+        $this->sessionStart();
         Session::set('test', 'test1');
         Session::set('asdf', 'asdf321');
 
@@ -57,7 +61,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     public function testGetter()
     {
-        Session::manager()->start();
+        $this->sessionStart();
         Session::set('test', 'test1');
         Session::set('asdf', 'asdf321');
 
@@ -67,7 +71,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     public function testHelpers()
     {
-        Session::manager()->start();
+        $this->sessionStart();
         Session::set('aaa', [
             'bbb' => [
                 'ccc' => 111,
@@ -91,8 +95,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     public function testCollect()
     {
-        Session::manager()->start();
-
+        $this->sessionStart();
         Session::set('aaa', [
             [
                 "name" => "bangi",
