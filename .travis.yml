@@ -8,5 +8,6 @@ php:
 before_script:
   - composer self-update
   - composer install
+  - echo 'sess.timezone = "./session/"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 script: phpunit
