@@ -19,5 +19,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "5.5"
-    }
+    },
+    "Tags":"0.0.1"
 }
