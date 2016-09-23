@@ -5,7 +5,6 @@
         "session",
         "non blocking"
     ],
-    "version" : "1.0.0",
     "homepage" : "https://github.com/skt-t1-byungi/Session",
     "license": "MIT",
     "require": {
