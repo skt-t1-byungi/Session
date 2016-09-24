@@ -70,7 +70,7 @@ var_dump(Session::except(['aaa']));
 Session::forget('aaa.bbb'); //or Session::remove('aaa.bbb');
 // unset($_SESSION['aaa']['bbb']);
 ```
-detial links : https://laravel.com/docs/5.3/helpers#arrays
+details links : https://laravel.com/docs/5.3/helpers#arrays
 
 ## collection
 ```php
@@ -105,7 +105,7 @@ var_dump(Session::collect('aaa')->where('position', 'human')->all());
 //     ],
 // ]
 ```
-detial links :  https://laravel.com/docs/5.3/collections
+details links :  https://laravel.com/docs/5.3/collections
 
 PSR-7 Middleware (__invoke, Closure)
 ---
@@ -113,7 +113,7 @@ when reaches the middleware point, session start.
 
 ## Slim3 Example
 ```php
-$app->add(Session::manager()->handler(new CustomHandler)->id('mySess')->middlware());
+$app->add(Session::manager()->handler(new CustomHandler)->id('mySess')->middleware());
 ```
 
 etc..
