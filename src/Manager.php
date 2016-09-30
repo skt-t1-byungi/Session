@@ -163,7 +163,8 @@ class Manager
         if ($handler) {
             $this->handler($handler);
         }
-        return new Middleware;
+
+        return new Middleware(clone $this);
     }
 
 }
