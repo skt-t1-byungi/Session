@@ -37,7 +37,7 @@ class Session
         }
 
         if (array_key_exists($method, static::$aliasHelperNames)) {
-            return call_user_func_array([Arr::class, static::$aliasHelperNames[$method]], $params);
+            return call_user_func_array([Arr::class, static::$aliasHelperNames[$method]], array_merge([ & $_SESSION], $params));
         }
 
         throw new BadMethodCallException("not exists {$method} method");
